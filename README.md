@@ -10,5 +10,10 @@ Hardware (most parts are from an old computer except RAM and Motherboard :
 **HDD_1** : 2 * Western Red 4Tb (TrueNas - ZFS Raid 1)  
 **HDD_2** : ST1000DM003 Barracuda 1Tb  
 **CPU Cooler** : DarkRock Pro 4  
-  
-**Software** : Proxmox VE 8.2.2
+**OS** : Proxmox VE 8.2.2
+
+
+Synology DS218+
+2 * Western Red 8Tb Raid 1
+
+Rasperry Pi 3B
