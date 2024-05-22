@@ -1,0 +1,12 @@
+[web_servers]
+client110.afcm.info
+client114.afcm.info
+client111.afcm.info
+
+[db_servers]
+client111.afcm.info
+clientdb112.afcm.info
+client114.afcm.info
+
+[file_servers]
+client113.afcm.info 

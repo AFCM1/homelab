@@ -1,0 +1,69 @@
+---
+- hosts: all
+  become: true
+  pre_tasks:
+  
+    - name: Debug distribution
+      debug:
+        msg: "Distribution: {{ ansible_distribution }}"
+  
+    - name: install updates (CentOS)
+      tags: always
+      dnf:
+        update_only: yes
+        update_cache: yes
+      when: ansible_distribution == "CentOS"
+
+    - name: install updates (Debian/Ubuntu)
+      tags: always
+      apt:
+        upgrade: dist
+        update_cache: yes
+      when: ansible_distribution in ["Debian", "Ubuntu"]
+
+- hosts: web_servers
+  become: true
+  tasks:
+    - name: install httpd package (CentOS)
+      tags: apache,centos,httpd
+      dnf:
+        name:
+          - httpd
+          - php
+        state: latest
+      when: ansible_distribution == "CentOS"
+
+    - name: install apache2 package (Debian/Ubuntu)
+      tags: apache,apache2,ubuntu,debian
+      apt:
+        name:
+          - apache2
+          - libapache2-mod-php
+        state: latest
+      when: ansible_distribution in ["Debian", "Ubuntu"]
+
+- hosts: db_servers
+  become: true
+  tasks:
+    - name: install mariadb server package (CentOS)
+      tags: centos,db,mariadb
+      dnf:
+        name: mariadb-server
+        state: latest
+      when: ansible_distribution == "CentOS"
+
+    - name: install mariadb server (Debian/Ubuntu)
+      tags: debian,ubuntu,mariadb
+      apt:
+        name: mariadb-server
+        state: latest
+      when: ansible_distribution in ["Debian", "Ubuntu"]
+
+- hosts: file_servers
+  become: true
+  tasks:
+    - name: install samba package
+      tags: samba
+      package:
+        name: samba
+        state: latest

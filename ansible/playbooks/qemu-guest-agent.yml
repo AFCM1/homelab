@@ -1,0 +1,17 @@
+- hosts: all
+  become: true
+  tasks:
+    - name: install qemu-guest-agent for Ubuntu/Debian
+      apt:
+        name: qemu-guest-agent
+        state: present
+        update_cache: true
+        #check_mode: yes
+      when: ansible_distribution == ["Debian", "Ubuntu"]
+
+    - name: install qemu-guest-agent for CentOS
+      dnf:
+        name: qemu-guest-agent
+        state: present
+        update_cache: true
+      when: ansible_distribution == "CentOS"
