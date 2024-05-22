@@ -1,0 +1,16 @@
+{
+        email EMAIL
+
+        # Uncomment this next line if you want to get
+        # some test certificates first.
+        #acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+
+        #acme_dns porkbun {
+        #        api_key xyz
+        #        api_secret_key xyz 
+       # }
+}
+
+
+subdomain_name {
+        reverse_proxy ip:port
