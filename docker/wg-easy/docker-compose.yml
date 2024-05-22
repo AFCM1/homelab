@@ -1,0 +1,37 @@
+services:
+  wgeasy:
+    image: ghcr.io/wg-easy/wg-easy:latest
+    network_mode: "bridge"
+    container_name: ${CONTAINER_NAME}
+    hostname: ${HOSTNAME}
+    ports:
+      - "51820:51820"
+      - "51821:51821"
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv4.ip_forward=1
+    volumes:
+      - ${VOLUME_PATH}/wg-easy:/etc/wireguard
+    environment:
+      - WG_HOST=${WG_HOST}
+      - PASSWORD=${PASSWORD}
+      - WG_DEFAULT_DNS=${WG_DEFAULT_DNS}
+      - WG_DEFAULT_ADDRESS=${WG_DEFAULT_ADDRESS}
+      - WG_ALLOWED_IPS=${WG_ALLOWED_IPS}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.middlewares.redirect-https.redirectScheme.scheme=https"
+      - "traefik.http.middlewares.redirect-https.redirectScheme.permanent=true"
+      - "traefik.http.routers.${CONTAINER_NAME}.rule=Host(`${SUBDOMAIN_NAME}`)"
+      - "traefik.http.routers.${CONTAINER_NAME}.entrypoints=https"
+      - "traefik.http.routers.${CONTAINER_NAME}.tls=true"
+      - "traefik.http.services.${CONTAINER_NAME}.loadbalancer.server.port=51820"
+    restart: always
+
+networks:
+  proxy:
+    external: true

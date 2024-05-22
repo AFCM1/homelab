@@ -1,0 +1,55 @@
+volumes: #bind volumes
+  pihole:
+  dnsmasq-unbound:
+
+services:
+  pihole:
+    container_name: ${CONTAINER_NAME}
+    image: cbcrowe/pihole-unbound:2024.03.2
+    networks: #to avoid port conflict, pihole will be reachable with an IP different than the host
+      macvlan_net:
+          ipv4_address: ${FTLCONF_LOCAL_IPV4}
+      proxy: #network name for traefik
+    hostname: ${HOSTNAME}
+    ports:
+      #- 443:443/tcp
+      - 53:53/tcp
+      - 53:53/udp
+      - ${PIHOLE_WEBPORT:-80}:80/tcp #Allows use of different port to access pihole web interface when other docker containers use port 80
+      - 5335:5335/tcp # Uncomment to enable unbound access on local server
+      - 22/tcp # Uncomment to enable SSH
+    environment:
+      - PIHOLE_UID=${PIHOLE_UID}
+      - PIHOLE_GID=${PIHOLE_UID}
+      - FTLCONF_LOCAL_IPV4=${FTLCONF_LOCAL_IPV4}
+      - TZ=${TZ:-UTC}
+      - WEBPASSWORD=${WEBPASSWORD}
+      - WEBTHEME=${WEBTHEME:-default-dark}
+      - REV_SERVER=${REV_SERVER:-false}
+      - REV_SERVER_TARGET=${REV_SERVER_TARGET}
+      - REV_SERVER_DOMAIN=${REV_SERVER_DOMAIN}
+      - REV_SERVER_CIDR=${REV_SERVER_CIDR}
+      - PIHOLE_DNS_=127.0.0.1#5335
+      - DNSSEC="true"
+      - DNSMASQ_LISTENING=single
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.middlewares.redirect-https.redirectScheme.scheme=https"
+      - "traefik.http.middlewares.redirect-https.redirectScheme.permanent=true"
+      - "traefik.http.routers.${CONTAINER_NAME}.rule=Host(`${SUBDOMAIN_NAME}`)" #pihole.domain_name
+      - "traefik.http.routers.${CONTAINER_NAME}.entrypoints=https"
+      - "traefik.http.routers.${CONTAINER_NAME}.tls=true"
+      - "traefik.http.services.${CONTAINER_NAME}0.loadbalancer.server.port=8080"
+    volumes:
+      - pihole:/etc/pihole:rw
+      - dnsmasq-unbound:/etc/dnsmasq.d:rw
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+networks:
+  macvlan_net:
+    external:
+      name: macvlan_net
+  proxy:
+    external: true
