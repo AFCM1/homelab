@@ -37,7 +37,7 @@ services:
       TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
       TZ: ${TZ}
     env_file: .env # use .env
-    volumes:
+    volumes: #to adapt with your own volumes/folders structure
       - ${PATH_CONF}/traefik.yml:/traefik.yml:ro
       - ${PATH_VOL}/:/etc/traefik/
       - /var/run/docker.sock:/var/run/docker.sock:ro
