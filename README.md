@@ -1,6 +1,6 @@
 # My Homelab 💻
 
-Most parts of my proxmox server are from an old computer except RAM and Motherboard : 
+Most parts of my proxmox server are from an old computer except RAM and Motherboard.
 
 | Hardware  | Specs |
 | ------------- | ------------- |
