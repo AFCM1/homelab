@@ -13,7 +13,7 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
       - DB_DATABASE=${DB_DATABASE}
-    labels:
+    labels: #this part is for traefik
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
       - "traefik.http.middlewares.redirect-https.redirectScheme.scheme=https"
