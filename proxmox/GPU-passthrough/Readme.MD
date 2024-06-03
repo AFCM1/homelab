@@ -19,9 +19,12 @@ LXC Jellyfin container setup with [tteck helper script](https://helper-scripts.c
 [    0.732964] perf/amd_iommu: Detected AMD IOMMU #0 (2 banks, 4 counters/bank).
 
 :three: Edit **/etc/default/grub** and add this line:
+
+>  GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on iommu=pt nofb nomodeset video=efifb:off"  
+
+Change accordingly:  
 >if using Intel CPU: intel_iommu=on  
 >if using AMD CPU: amd_iommu=on  
->  GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on iommu=pt nofb nomodeset video=efifb:off"
 
 :four: Update the grub to apply the changes:  
 > update-grub
