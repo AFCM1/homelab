@@ -94,7 +94,7 @@ lxc.mount.entry: /dev/nvram dev/nvram none bind,optional,create=file
 
 :one: Start the Jellyfin LXC container.  
 :two: Download and Install the same Nvidia driver but with ``--no-kernel-module`` this time:
-> cd /opt/nvidia
+> cd /opt/nvidia  
 > ./NVIDIA_DRIVER_FILE --no-kernel-module
 
 :three: Reboot
