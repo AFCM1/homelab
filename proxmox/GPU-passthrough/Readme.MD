@@ -1,18 +1,19 @@
+
 ## Quick tutorial to setup a GPU passthrough - NVIDIA GPU and LXC Jellyfin ✍️
 
 Some tutorials use the nvidia driver, others use the vfio-pci. I couldn't make vfio-pci works but it works great with the nvidia one.
 
 **Use case: 
-PVE 8.2.2
-CPU: Ryzen 5 3600
-GPU: GTX970
-Nvidia driver version: 550.78
-LXC Jellyfin container setup with [tteck helper script](https://helper-scripts.com/scripts)**
+PVE 8.2.2  
+CPU: Ryzen 5 3600  
+GPU: GTX970  
+Nvidia driver version: 550.78  
+LXC Jellyfin container setup with [tteck helper script](https://helper-scripts.com/scripts)**  
 
 ### On promox
 
 :one: Make sure to enable Intel VT-d & VT-x and IOMMU in your bios.
-:two: - Check that IOMMU is enable with this command:
+:two: Check that IOMMU is enable with this command:
 > dmesg | grep -e DMAR -e IOMMU
 > [    0.725409] pci 0000:00:00.2: AMD-Vi: IOMMU performance counters supported
 [    0.732964] perf/amd_iommu: Detected AMD IOMMU #0 (2 banks, 4 counters/bank).
@@ -100,10 +101,10 @@ lxc.mount.entry: /dev/nvram dev/nvram none bind,optional,create=file
 
 :five: Log into Jellyfin web page and enable the hardware acceleration.
 Choose Nvidia NVENC.
-Check on the [Nvidia Matrix](https://developer.nvidia.com/video-encode-and-decode-gpu-support-matrix-new) what tick you should tick/not tick.
-:six: We will now check that the transcoding is working.
-Play a 4K movie for example, if the movie is playing that's a good news.
-Confirm it by clicking on the wheel then Playback info
+Check on the [Nvidia Matrix](https://developer.nvidia.com/video-encode-and-decode-gpu-support-matrix-new) what tick you should tick/not tick.  
+:six: We will now check that the transcoding is working.  
+Play a 4K movie for example, if the movie is playing that's a good news.  
+Confirm it by clicking on the wheel then Playback info  
 ![enter image description here](https://i.imgur.com/UkS617U.jpeg)
 
 :six: Last step to confirm the transcoding is using the GPU. On promox runs this command:
