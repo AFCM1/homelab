@@ -56,7 +56,7 @@ blacklist nvidia_drm
 ![enter image description here](https://i.imgur.com/2RJSwCl.png)
 
 :one::one:  Before mounting the modules to the container we will need to get some numbers on the proxmox host:
-> ls -l /dev/nv*
+> ls -l /dev/nv*  
 crw-rw-rw- 1 root root 195,   0 Jun  3 21:14 /dev/nvidia0  
 crw-rw-rw- 1 root root 195, 255 Jun  3 21:14 /dev/nvidiactl  
 crw-rw-rw- 1 root root 195, 254 Jun  3 21:14 /dev/nvidia-modeset  
@@ -73,18 +73,18 @@ Write down the number (195,0) (195,255) (195,254) etc... We will need it in the 
 
 :one::two: Edit the Jellyfin LXC conf file **/etc/pve/lxc/(ID).conf** and add these lines. The first lxc.group corresponds to the first lxc.mount etc. 
 The numbers must match the order and each /dev/nvidia* from last step:
-> lxc.cgroup.devices.allow: c 195:0 rw
-lxc.cgroup.devices.allow: c 195:255 rw
-lxc.cgroup.devices.allow: c 195:254 rw
-lxc.cgroup.devices.allow: c 236:0 rw
-lxc.cgroup.devices.allow: c 236:1 rw
-lxc.cgroup.devices.allow: c 10:144 rw
-lxc.mount.entry: /dev/nvidia0 dev/nvidia0 none bind,optional,create=file
-lxc.mount.entry: /dev/nvidiactl dev/nvidiactl none bind,optional,create=file
-lxc.mount.entry: /dev/nvidia-modeset dev/nvidia-modeset none bind,optional,create=file
-lxc.mount.entry: /dev/nvidia-uvm dev/nvidia-uvm none bind,optional,create=file
-lxc.mount.entry: /dev/nvidia-uvm-tools dev/nvidia-uvm-tools none bind,optional,create=file
-lxc.mount.entry: /dev/nvram dev/nvram none bind,optional,create=file
+> lxc.cgroup.devices.allow: c 195:0 rw  
+lxc.cgroup.devices.allow: c 195:255 rw  
+lxc.cgroup.devices.allow: c 195:254 rw  
+lxc.cgroup.devices.allow: c 236:0 rw  
+lxc.cgroup.devices.allow: c 236:1 rw  
+lxc.cgroup.devices.allow: c 10:144 rw  
+lxc.mount.entry: /dev/nvidia0 dev/nvidia0 none bind,optional,create=file  
+lxc.mount.entry: /dev/nvidiactl dev/nvidiactl none bind,optional,create=file  
+lxc.mount.entry: /dev/nvidia-modeset dev/nvidia-modeset none bind,optional,create=file  
+lxc.mount.entry: /dev/nvidia-uvm dev/nvidia-uvm none bind,optional,create=file  
+lxc.mount.entry: /dev/nvidia-uvm-tools dev/nvidia-uvm-tools none bind,optional,create=file  
+lxc.mount.entry: /dev/nvram dev/nvram none bind,optional,create=file  
 
 ### On Jellyfin LXC
 
