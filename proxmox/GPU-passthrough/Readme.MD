@@ -98,6 +98,7 @@ lxc.mount.entry: /dev/nvram dev/nvram none bind,optional,create=file
 > reboot
 > 
 :four: Check that the driver is running fine:  
+
 ![enter image description here](https://i.imgur.com/okgh4zS.png)
 
 :five: Log into Jellyfin web page and enable the hardware acceleration.
