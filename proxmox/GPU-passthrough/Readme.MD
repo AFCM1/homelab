@@ -14,22 +14,22 @@ LXC Jellyfin container setup with [tteck helper script](https://helper-scripts.c
 
 :one: Make sure to enable Intel VT-d & VT-x and IOMMU in your bios.
 :two: Check that IOMMU is enable with this command:
-> dmesg | grep -e DMAR -e IOMMU
-> [    0.725409] pci 0000:00:00.2: AMD-Vi: IOMMU performance counters supported
+> dmesg | grep -e DMAR -e IOMMU  
+> [    0.725409] pci 0000:00:00.2: AMD-Vi: IOMMU performance counters supported  
 [    0.732964] perf/amd_iommu: Detected AMD IOMMU #0 (2 banks, 4 counters/bank).
 
 :three: Edit **/etc/default/grub** and add this line:
->if using Intel CPU: intel_iommu=on
->if using AMD CPU: amd_iommu=on
+>if using Intel CPU: intel_iommu=on  
+>if using AMD CPU: amd_iommu=on  
 >  GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on iommu=pt nofb nomodeset video=efifb:off"
 
 :four: Update the grub to apply the changes
 > update-grub
 
 :five: Create/Edit **/etc/modprobe.d/blacklist.conf** so these modules won't be loaded during boot:
-> blacklist nouveau
-blacklist radeon
-blacklist nvidiafb
+> blacklist nouveau  
+blacklist radeon  
+blacklist nvidiafb  
 blacklist nvidia_drm
 
 :six: Reboot
@@ -37,9 +37,9 @@ blacklist nvidia_drm
 
 :seven: Download and Install the Nvidia driver from [Nvidia website](https://www.nvidia.com/Download/index.aspx)
 > Find your driver and right-click on "Agree & Download" copy the link
-> mkdir /opt/nvidia && cd /opt/nvidia
-> wget LINK
-> chmod +x NVIDIA_DRIVER_FILE.run
+> mkdir /opt/nvidia && cd /opt/nvidia  
+> wget LINK  
+> chmod +x NVIDIA_DRIVER_FILE.run  
 > ./NVIDIA_DRIVER_FILE.run
 
 :eight: Edit **/etc/modules-load.d/modules.conf** and add these Nvidia modules:
