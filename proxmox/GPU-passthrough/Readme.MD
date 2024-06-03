@@ -47,12 +47,12 @@ blacklist nvidia_drm
 > nvidia-modeset 
 > nvidia_uvm
 
-:nine: Create/Edit **/etc/udev/rules.d/70-nvidia.rules** and add these lines:
-> KERNEL=="nvidia", RUN+="/bin/bash -c '/usr/bin/nvidia-smi -L && /bin/chmod 666 /dev/nvidia*'" 
-> KERNEL=="nvidia_modeset", RUN+="/bin/bash -c '/usr/bin/nvidia-modprobe -c0 -m && /bin/chmod 666 /dev/nvidia-modeset*'" 
-> KERNEL=="nvidia_uvm", RUN+="/bin/bash -c '/usr/bin/nvidia-modprobe -c0 -u && /bin/chmod 666 /dev/nvidia-uvm*'"
+:nine: Create/Edit **/etc/udev/rules.d/70-nvidia.rules** and add these lines:  
+> KERNEL=="nvidia", RUN+="/bin/bash -c '/usr/bin/nvidia-smi -L && /bin/chmod 666 /dev/nvidia*'"  
+> KERNEL=="nvidia_modeset", RUN+="/bin/bash -c '/usr/bin/nvidia-modprobe -c0 -m && /bin/chmod 666 /dev/nvidia-modeset*'"  
+> KERNEL=="nvidia_uvm", RUN+="/bin/bash -c '/usr/bin/nvidia-modprobe -c0 -u && /bin/chmod 666 /dev/nvidia-uvm*'"  
 
-:one::zero: Check that the Nvidia driver is running fine:
+:one::zero: Check that the Nvidia driver is running fine:  
 ![enter image description here](https://i.imgur.com/2RJSwCl.png)
 
 :one::one:  Before mounting the modules to the container we will need to get some numbers on the proxmox host:
