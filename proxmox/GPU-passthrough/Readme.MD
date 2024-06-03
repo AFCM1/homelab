@@ -89,7 +89,7 @@ lxc.mount.entry: /dev/nvram dev/nvram none bind,optional,create=file
 
 ### On Jellyfin LXC
 
-:one: Start the Jellyfin LXC container.
+:one: Start the Jellyfin LXC container.  
 :two: Download and Install the same Nvidia driver but with ``--no-kernel-module`` this time:
 > cd /opt/nvidia
 > ./NVIDIA_DRIVER_FILE --no-kernel-module
@@ -97,7 +97,7 @@ lxc.mount.entry: /dev/nvram dev/nvram none bind,optional,create=file
 :three: Reboot
 > reboot
 > 
-:four: Check that the driver is running fine:
+:four: Check that the driver is running fine:  
 ![enter image description here](https://i.imgur.com/okgh4zS.png)
 
 :five: Log into Jellyfin web page and enable the hardware acceleration.
@@ -106,8 +106,11 @@ Check on the [Nvidia Matrix](https://developer.nvidia.com/video-encode-and-decod
 :six: We will now check that the transcoding is working.  
 Play a 4K movie for example, if the movie is playing that's a good news.  
 Confirm it by clicking on the wheel then Playback info  
+
 ![enter image description here](https://i.imgur.com/UkS617U.jpeg)
 
-:six: Last step to confirm the transcoding is using the GPU. On promox runs this command:
-![enter image description here](https://i.imgur.com/I6XWs4Q.png)
+:six: Last step to confirm the transcoding is using the GPU. On promox runs this command:  
+
+![enter image description here](https://i.imgur.com/I6XWs4Q.png)  
+
 :seven: Congrats the GPU passthrough is now working 💪
