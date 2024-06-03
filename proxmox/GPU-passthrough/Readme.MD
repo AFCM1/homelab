@@ -53,6 +53,7 @@ blacklist nvidia_drm
 > KERNEL=="nvidia_uvm", RUN+="/bin/bash -c '/usr/bin/nvidia-modprobe -c0 -u && /bin/chmod 666 /dev/nvidia-uvm*'"  
 
 :one::zero: Check that the Nvidia driver is running fine:  
+
 ![enter image description here](https://i.imgur.com/2RJSwCl.png)
 
 :one::one:  Before mounting the modules to the container we will need to get some numbers on the proxmox host:
