@@ -36,7 +36,7 @@ blacklist nvidia_drm
 > reboot
 
 :seven: Download and Install the Nvidia driver from [Nvidia website](https://www.nvidia.com/Download/index.aspx)
-> Find your driver and right-click on "Agree & Download" copy the link
+> Find your driver and right-click on "Agree & Download" copy the link  
 > mkdir /opt/nvidia && cd /opt/nvidia  
 > wget LINK  
 > chmod +x NVIDIA_DRIVER_FILE.run  
@@ -57,12 +57,12 @@ blacklist nvidia_drm
 
 :one::one:  Before mounting the modules to the container we will need to get some numbers on the proxmox host:
 > ls -l /dev/nv*
-crw-rw-rw- 1 root root 195,   0 Jun  3 21:14 /dev/nvidia0
-crw-rw-rw- 1 root root 195, 255 Jun  3 21:14 /dev/nvidiactl
-crw-rw-rw- 1 root root 195, 254 Jun  3 21:14 /dev/nvidia-modeset
-crw-rw-rw- 1 root root 236,   0 Jun  3 21:14 /dev/nvidia-uvm
-crw-rw-rw- 1 root root 236,   1 Jun  3 21:14 /dev/nvidia-uvm-tools
-crw------- 1 root root  10, 144 Jun  3 21:14 /dev/nvram
+crw-rw-rw- 1 root root 195,   0 Jun  3 21:14 /dev/nvidia0  
+crw-rw-rw- 1 root root 195, 255 Jun  3 21:14 /dev/nvidiactl  
+crw-rw-rw- 1 root root 195, 254 Jun  3 21:14 /dev/nvidia-modeset  
+crw-rw-rw- 1 root root 236,   0 Jun  3 21:14 /dev/nvidia-uvm  
+crw-rw-rw- 1 root root 236,   1 Jun  3 21:14 /dev/nvidia-uvm-tools  
+crw------- 1 root root  10, 144 Jun  3 21:14 /dev/nvram  
 
 Write down the number (195,0) (195,255) (195,254) etc... We will need it in the next steps.
 -   **`195:255`**: These are the major and minor numbers of the device:
