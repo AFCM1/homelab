@@ -23,7 +23,7 @@ LXC Jellyfin container setup with [tteck helper script](https://helper-scripts.c
 >if using AMD CPU: amd_iommu=on  
 >  GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on iommu=pt nofb nomodeset video=efifb:off"
 
-:four: Update the grub to apply the changes
+:four: Update the grub to apply the changes:  
 > update-grub
 
 :five: Create/Edit **/etc/modprobe.d/blacklist.conf** so these modules won't be loaded during boot:
@@ -32,10 +32,10 @@ blacklist radeon
 blacklist nvidiafb  
 blacklist nvidia_drm
 
-:six: Reboot
+:six: Reboot:  
 > reboot
 
-:seven: Download and Install the Nvidia driver from [Nvidia website](https://www.nvidia.com/Download/index.aspx)
+:seven: Download and Install the Nvidia driver from [Nvidia website](https://www.nvidia.com/Download/index.aspx):
 > Find your driver and right-click on "Agree & Download" copy the link  
 > mkdir /opt/nvidia && cd /opt/nvidia  
 > wget LINK  
