@@ -46,9 +46,9 @@ blacklist nvidia_drm
 > ./NVIDIA_DRIVER_FILE.run
 
 :eight: Edit **/etc/modules-load.d/modules.conf** and add these Nvidia modules:
-> nvidia 
-> nvidia-modeset 
-> nvidia_uvm
+> nvidia  
+> nvidia-modeset  
+> nvidia_uvm  
 
 :nine: Create/Edit **/etc/udev/rules.d/70-nvidia.rules** and add these lines:  
 > KERNEL=="nvidia", RUN+="/bin/bash -c '/usr/bin/nvidia-smi -L && /bin/chmod 666 /dev/nvidia*'"  
