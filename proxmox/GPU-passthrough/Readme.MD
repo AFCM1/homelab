@@ -106,7 +106,7 @@ lxc.mount.entry: /dev/nvram dev/nvram none bind,optional,create=file
 
 :five: Log into Jellyfin web page and enable the hardware acceleration.
 Choose Nvidia NVENC.
-Check on the [Nvidia Matrix](https://developer.nvidia.com/video-encode-and-decode-gpu-support-matrix-new) what tick you should tick/not tick.  
+Check on the [Nvidia Matrix](https://developer.nvidia.com/video-encode-and-decode-gpu-support-matrix-new) what boxes you should tick/not tick.  
 :six: We will now check that the transcoding is working.  
 Play a 4K movie for example, if the movie is playing that's a good news.  
 Confirm it by clicking on the wheel then Playback info  
