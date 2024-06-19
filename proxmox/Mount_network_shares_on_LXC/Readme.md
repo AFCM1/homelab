@@ -13,7 +13,7 @@ Make sure to add the shared folder **Download** in the NFS perms on Synology lik
 ### On proxmox node  
 
 :one: Create the folders where the shares will be mounted:  
-> mkdir -p /synology/Download  
+> mkdir -p /mnt/synology/Download  
 > mkdir /mnt/truenas
 
 2️ Edit /etc/fstab and add these lines:
@@ -41,6 +41,8 @@ Add the following lines into the file:
 >mp1: /mnt/synology/Download/,mp=/mnt/synology/Download
 
 :six: Start your Jellyfin LXC
+
+More detailed tutorial : https://forum.proxmox.com/threads/tutorial-mounting-nfs-share-to-an-unprivileged-lxc.138506/
 
 :seven: Your shares will appeared in /mnt
 
