@@ -16,3 +16,4 @@ Most parts of my proxmox server are from an old computer except RAM and Motherbo
 | Synology DS218+ | 2 * Western Red 8Tb Raid 1 |
 | Rasperry Pi 3B | Main Raspberry Pi |
 | Rasperry Pi 2B | MotionEye OS |
+| Beelink EQ12 N100 | Main homelab |
