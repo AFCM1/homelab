@@ -28,3 +28,6 @@ mma is the city name
 > mullvad connect
 
 Other useful commands can be find on their [website](https://mullvad.net/en/help/how-use-mullvad-cli)
+
+:eight: Check that you get the VPN server IP
+> curl -s checkip.dyndns.org|sed -e 's/.\*Current IP Address: //' -e 's/<.*$//'
