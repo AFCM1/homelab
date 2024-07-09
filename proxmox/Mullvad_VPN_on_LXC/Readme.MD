@@ -21,7 +21,7 @@ lxc.mount.entry: /dev/net dev/net none bind,create=dir
 :six: Set the server location
 > mullvad relay set location se mma
 
-se is the country code
+se is the country code  
 mma is the city name
 
 :seven: Start the connection
