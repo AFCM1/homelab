@@ -3,7 +3,7 @@
 **Use case:**  
 Promox PVE 8.2.2  
 I have data on my Synology - Path will be /Download  
-I have data in a TrueNas VM - Path will be /mnt/truebas
+I have data in a TrueNas VM - Path will be /mnt/truenas
 I have Jellyfin running in a LXC  
 I want to access my media files stored in my synology and truenas on Jellyfin 
 
@@ -40,7 +40,10 @@ Add the following lines into the file:
 >mp0: /mnt/truenas/,mp=/mnt/truenas  
 >mp1: /mnt/synology/Download/,mp=/mnt/synology/Download
 
-:six: Start your Jellyfin LXC
+:six: Start your Jellyfin LXC, create this group and add the user running the jellyfin app into this group:
+
+> groupadd -g 10000 lxc_shares
+> usermod -aG lxc_shares root
 
 More detailed tutorial : https://forum.proxmox.com/threads/tutorial-mounting-nfs-share-to-an-unprivileged-lxc.138506/
 
