@@ -42,7 +42,7 @@ Add the following lines into the file:
 
 :six: Start your Jellyfin LXC, create this group and add the user running the jellyfin app into this group:
 
-> groupadd -g 10000 lxc_shares
+> groupadd -g 10000 lxc_shares  
 > usermod -aG lxc_shares root
 
 More detailed tutorial : https://forum.proxmox.com/threads/tutorial-mounting-nfs-share-to-an-unprivileged-lxc.138506/
