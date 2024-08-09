@@ -7,7 +7,7 @@
 
 :two: Add these permissions in the LXC conf file in /etc/pve/lxc/[LXC_ID].conf
 > lxc.cgroup2.devices.allow: c 10:200 rwm
-lxc.mount.entry: /dev/net dev/net none bind,create=dir
+> lxc.mount.entry: /dev/net dev/net none bind,create=dir
 
 
 ### On your Linux container
