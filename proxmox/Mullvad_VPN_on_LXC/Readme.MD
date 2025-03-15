@@ -37,13 +37,18 @@ Other useful commands can be find on their [website](https://mullvad.net/en/help
 
 ### On your mullvad account  
 :one: [Generate a new configuration file](https://mullvad.net/en/account/wireguard-config)
+
 :two: Generate a new key and select locations
+
 :three: Download zip archive
+
 :four: Unzip archive
 
+
 ### On your LXC
-:five: Copy paste and replace the .conf files into your lxc /etc/wireguard
-:six: Set your mullvad account number
+:one: Copy paste and replace the .conf files into your lxc /etc/wireguard
+
+:two: Set your mullvad account number
 > mullvad account login 1234....
 
 Automate the mullvad connection with a job in /etc/systemd/system:
