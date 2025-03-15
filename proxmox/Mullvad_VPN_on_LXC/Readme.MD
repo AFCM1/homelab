@@ -52,7 +52,8 @@ Other useful commands can be find on their [website](https://mullvad.net/en/help
 > mullvad account login 1234....
 
 Automate the mullvad connection with a job in /etc/systemd/system:
-> cat wg-quick-abc.service
+```
+cat wg-quick-abc.service
 [Unit]
 Description=WireGuard VPN abc
 After=network.target
@@ -66,5 +67,5 @@ ExecStop=/usr/bin/wg-quick down /etc/wireguard/abc.conf
 
 [Install]
 WantedBy=multi-user.target
-
+```
 
