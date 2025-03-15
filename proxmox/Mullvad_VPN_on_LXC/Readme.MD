@@ -69,3 +69,10 @@ ExecStop=/usr/bin/wg-quick down /etc/wireguard/abc.conf
 WantedBy=multi-user.target
 ```
 
+In my bashrc
+> alias testwg='curl https://am.i.mullvad.net/connected'
+```
+testwg
+You are connected to Mullvad (server abc). Your IP address is xyz
+```
+
