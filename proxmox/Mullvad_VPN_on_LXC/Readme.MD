@@ -32,3 +32,34 @@ Other useful commands can be find on their [website](https://mullvad.net/en/help
 
 :eight: Check that you get the VPN server IP
 > curl -s checkip.dyndns.org|sed -e 's/.\*Current IP Address: //' -e 's/<.*$//'
+
+## If your mullvad account expired
+
+### On your mullvad account  
+:one: [Generate a new configuration file](https://mullvad.net/en/account/wireguard-config)
+:two: Generate a new key and select locations
+:three: Download zip archive
+:four: Unzip archive
+
+### On your LXC
+:five: Copy paste and replace the .conf files into your lxc /etc/wireguard
+:six: Set your mullvad account number
+> mullvad account login 1234....
+
+Automate the mullvad connection with a job in /etc/systemd/system:
+> cat wg-quick-abc.service
+[Unit]
+Description=WireGuard VPN abc
+After=network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sleep 60
+ExecStartPost=/usr/bin/wg-quick up /etc/wireguard/abc.conf
+ExecStop=/usr/bin/wg-quick down /etc/wireguard/abc.conf
+
+[Install]
+WantedBy=multi-user.target
+
+
