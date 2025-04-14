@@ -1,0 +1,20 @@
+
+NFS perms on share:
+syno ip
+read/write
+no mapping
+sys
+tick: enable async + allow users to access mounted subfolders
+
+On PBS shell:
+
+echo "IP:/volume1/BACKUP/Proxmox/PBS /mnt/synology nfs vers=3,nouser,atime,auto,retrans=2,rw,dev,exec 0 0" >> /etc/fstab
+
+mkdir /mnt/synology
+mount -a
+systemctl daemon-reload
+chmod 775 /mnt/synology
+
+create datastore on PBS
+name: Synology
+Backing Path: /mnt/synology
