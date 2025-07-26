@@ -1,4 +1,4 @@
-## Tutorial to change the data location  (LXC) ✍️
+## Tutorial to change Immich data location  (LXC) ✍️
 
 **Use case:**  
 Promox PVE 8.2.4  
