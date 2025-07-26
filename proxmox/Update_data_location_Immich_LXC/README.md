@@ -24,9 +24,15 @@ Add the shared folder **backup** in the NFS perms on Synology like this:
 
 2️ Edit /etc/fstab and add these lines:
 
+Check the uid and gid of the immich user on LXC so you can edit the fstab accordingly:
+> immich:~# id immich  
+> uid=999(immich) gid=995(immich) groups=995(immich),44(video),104(render),10000(lxc_shares)
+
+Then edit the fstab on Promox:  
 >//SYNO_IP/backup/immich /mnt/backup/immich cifs _netdev,x-systemd.automount,noatime,uid=100999,gid=100995,dir_mode=0770,file_mode=0770,user=SYNO_USERNAME,pass=SYNO_PASSWD 0 0
 
 The shared folder will be mounted on /mnt/backup on the proxmox node. Replace SYNO_IP with your Synology IP.  
+
 
 
 :three: Reload systemd:  
@@ -42,20 +48,33 @@ Add the following lines into the file:
 
 >mp0: /mnt/backup/immich/,mp=/mnt/backup/immich
 
-:six: Start your Immich LXC, create this group and add the user running the jellyfin app into this group:
+### On LXC  
+1️⃣: Start your Immich LXC, create this group and add the user running the jellyfin app into this group:
 
 > groupadd -g 10000 lxc_shares  
 > usermod -aG lxc_shares immich
 
-:seven: Your shares will appeared in /mnt
+2️ Your shares will appeared in /mnt
 
-:eight: To change the upload location, edit 'IMMICH_MEDIA_LOCATION' in /opt/immich/.env
+:three: To change the upload location, edit 'IMMICH_MEDIA_LOCATION' in /opt/immich/.env
 > IMMICH_MEDIA_LOCATION=/mnt/backup/immich
 
-9️⃣ Delete the symlink **upload** 'located' in /opt/immich/app & /opt/immich/app/machine-learning  
+:four: Delete the symlink **upload** 'located' in /opt/immich/app & /opt/immich/app/machine-learning  
 And recreate the symlink **upload** in /opt/immich/app & /opt/immich/app/machine-learning to your new upload location  
 > ln -sd /mnt/backup/immich /opt/immich/app/upload  
 > ln -sd /mnt/backup/immich /opt/immich/app/machine-learning/upload
 
-🔟 Reboot the LXC and then check if somethings fails.  
+:five: Reboot the LXC and then check if somethings fails.  
 Log location: /var/log/immich/web.log
+
+### Notes  
+Perms on shared fold on LXC:  
+> immich:/mnt# ll  
+> drwxr-xr-x 3 root lxc_shares 4096 Jul 25 23:21 backup  
+> immich:/mnt# cd backup/  
+> immich:/mnt/backup# ll  
+> drwxrwx--- 2 immich immich 0 Jul 26 00:59 immich  
+
+Perms on shared fold on proxmox node:  
+> root@proxmox:/mnt/backup# ll  
+> drwxrwx--- 2 100999 100995 0 Jul 26 00:59 immich  
